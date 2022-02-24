@@ -1,4 +1,4 @@
-import 'package:edutech/screens/mycoursescreen/widgets/widgets.dart';
+import 'package:edutech/screens/mycoursescreen/widgets.dart';
 import 'package:flutter/material.dart';
 
 class MyCourseScreen extends StatelessWidget {
