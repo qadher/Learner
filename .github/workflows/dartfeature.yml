@@ -1,0 +1,44 @@
+
+name: CI
+
+on:
+  pull_request:
+    branches: 
+      - feature
+
+jobs:
+  flutter_test:
+    name: Run flutter test and analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      #- uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - run: flutter clean
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
+  build_apk:
+    name: Build flutter (Android)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: flutter flutter clean
+      - run: flutter pub get
+      - run: flutter build apk --spilt-per-abi
+
+      # Note: This workflow uses the latest stable version of the Dart SDK.
+      # You can specify other versions if desired, see documentation here:
+      # https://github.com/dart-lang/setup-dart/blob/main/README.md
+      # - uses: dart-lang/setup-dart@v1
+      #- uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+
+      #- name: Install dependencies
+      #  run: dart pub get
+
+      # Uncomment this step to verify the use of 'dart format' on each commit.
+      # - name: Verify formatting
+      #   run: dart format --output=none --set-exit-if-changed .
+
+      # Consider passing '--fatal-infos' for slightly stricter analysis.
+      
